@@ -87,7 +87,8 @@ export async function fetchFollowingTimeline(
   // get the itemContnent from each entry
   const tweets = entries
     .map((entry) => entry.content.itemContent?.tweet_results?.result)
-    .filter((tweet) => tweet !== undefined);
+    .filter((tweet) => tweet !== undefined)
+    .slice(0, count);
 
   return tweets;
 }
