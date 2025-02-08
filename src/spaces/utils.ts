@@ -155,7 +155,7 @@ export async function createBroadcast(params: {
       description: params.description || '',
       height: 1080,
       is_360: false,
-      is_space_available_for_replay: params.record,
+      is_space_available_for_replay: true,
       is_webrtc: true,
       languages: params.languages ?? [],
       region: params.region,

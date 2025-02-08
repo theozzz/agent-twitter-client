@@ -98,6 +98,7 @@ export class Space extends EventEmitter {
 
     // 2) Create a broadcast
     this.logger.debug('[Space] Creating broadcast...');
+    this.logger.debug('[Space] Config  =>', config);
     const broadcast = await createBroadcast({
       description: config.description,
       languages: config.languages,
