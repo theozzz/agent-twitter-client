@@ -264,7 +264,7 @@ export class SpaceParticipant extends EventEmitter {
     await this.janusClient.initializeGuestSpeaker(this.sessionUUID);
 
     this.janusClient.on('audioDataFromSpeaker', (data: AudioDataWithUser) => {
-      this.logger.info(
+      this.logger.debug(
         '[SpaceParticipant] Received speaker audio =>',
         data.userId,
       );
