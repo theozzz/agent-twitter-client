@@ -236,7 +236,7 @@ export class SpaceParticipant extends EventEmitter {
 
     // 1) Retrieve TURN servers
     const turnServers: TurnServersInfo = await getTurnServers(this.cookie!);
-    this.logger.debug('[SpaceParticipant] turnServers =>', turnServers);
+    this.logger.info('[SpaceParticipant] turnServers =>', turnServers);
 
     // 2) Negotiate with /audiospace/stream/negotiate
     const nego = await negotiateGuestStream({
@@ -247,7 +247,7 @@ export class SpaceParticipant extends EventEmitter {
     });
     this.janusJwt = nego.janus_jwt;
     this.webrtcGwUrl = nego.webrtc_gw_url;
-    this.logger.debug('[SpaceParticipant] webrtcGwUrl =>', this.webrtcGwUrl);
+    this.logger.info('[SpaceParticipant] webrtcGwUrl =>', this.webrtcGwUrl);
 
     // 3) Create JanusClient
     this.janusClient = new JanusClient({
@@ -264,7 +264,7 @@ export class SpaceParticipant extends EventEmitter {
     await this.janusClient.initializeGuestSpeaker(this.sessionUUID);
 
     this.janusClient.on('audioDataFromSpeaker', (data: AudioDataWithUser) => {
-      this.logger.debug(
+      this.logger.info(
         '[SpaceParticipant] Received speaker audio =>',
         data.userId,
       );
@@ -341,7 +341,7 @@ export class SpaceParticipant extends EventEmitter {
     setupCommonChatEvents(this.chatClient, this.logger, this);
 
     this.chatClient.on('newSpeakerAccepted', ({ userId }) => {
-      this.logger.debug('[SpaceParticipant] newSpeakerAccepted =>', userId);
+      this.logger.info('[SpaceParticipant] newSpeakerAccepted =>', userId);
 
       // If we haven't created Janus yet, skip
       if (!this.janusClient) {
